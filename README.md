@@ -8,3 +8,7 @@ Fabrikafa Library contains helper classes and methods for Fabrikafa projects.
 
 2.0.0.0 
 - Upgraded to .NET 6.0
+
+2.0.1.0
+- LangVersion upgraded to 10.0
+- Added FabrikafaSettings class to the Fabrikafa.Common.Settings class to reflect latest settings files used.
