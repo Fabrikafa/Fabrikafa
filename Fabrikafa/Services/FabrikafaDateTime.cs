@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Fabrikafa.Services
+namespace Fabrikafa.Services;
+
+public class SystemDateTime : IDateTime
 {
-    public class SystemDateTime : IDateTime
+    public DateTime Now
     {
-        public DateTime Now
-        {
-            get { return DateTime.UtcNow; }
-        }
+        get { return DateTime.UtcNow; }
     }
 }

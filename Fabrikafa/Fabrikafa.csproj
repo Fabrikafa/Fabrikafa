@@ -36,10 +36,6 @@
     </None>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Sistem\" />
-  </ItemGroup>
-
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Exec Command="xcopy $(ProjectDir)$(OutDir)$(TargetFileName) C:\_References\Fabrikafa\$(ProjectName)&#xD;&#xA;xcopy *.md C:\_References\Fabrikafa\$(ProjectName)" />
   </Target>

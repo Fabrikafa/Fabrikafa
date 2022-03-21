@@ -15,3 +15,7 @@ Fabrikafa Library contains helper classes and methods for Fabrikafa projects.
 
 2.0.2.0
 - Added Date Service. With this service "Now" returns UtcNow by default.
+- Added "ViewDataGlobal" class for to store global keys to use along with ViewData
+- Added "TempDataGlobal" class for to store global keys to use along with TempData
+- Namespace and folder changed from "Fabrikafa.Web" to "Fabrikafa.Sistem" for classes: "CookieKeyGlobal", "CustomClaimTypesGlobal", "PageNameGlobal", "PolicyNameGlobal", "RoleNameGlobal", "SessionKeyGlobal", "TempDataGlobal", "ViewDataGlobal".
+- All namespaces changed to File Scoped Namespaces
