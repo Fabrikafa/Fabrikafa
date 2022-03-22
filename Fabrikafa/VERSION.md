@@ -19,3 +19,4 @@
 2.0.3.0
 - "Fabrikafa.Result" class XML documentation updated.
 - "Fabrikafa.Result" class refactorings.
+- RequestId added for "Fabrikafa.Result" class.

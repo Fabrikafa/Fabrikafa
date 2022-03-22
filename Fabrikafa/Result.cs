@@ -54,6 +54,11 @@ public class Result
     public string CallBackUrlText { get; set; }
 
     /// <summary>
+    /// Value that represents a unique value for the request to the server.
+    /// </summary>
+    public string RequestId { get; set; }
+
+    /// <summary>
     /// messageText value to use with template
     /// </summary>
     private static string messageText = string.Empty;
