@@ -8,11 +8,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{
 		CONTRIBUTION.md = CONTRIBUTION.md
 		LICENSE.md = LICENSE.md
 		README.md = README.md
+		Fabrikafa\README.md = Fabrikafa\README.md
+		Fabrikafa\VERSION.md = Fabrikafa\VERSION.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fabrikafa", "Fabrikafa\Fabrikafa.csproj", "{B10C83BA-432B-434B-B691-2DBC18046A1A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FabrikafaSample", "FabrikafaSample\FabrikafaSample.csproj", "{F93320DC-C205-405A-819E-451077D4DC68}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{99CBA6F7-0A02-4B26-8AF9-F0C07EBE24E1}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
