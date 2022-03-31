@@ -20,3 +20,4 @@
 - "Fabrikafa.Result" class XML documentation updated.
 - "Fabrikafa.Result" class refactorings.
 - RequestId added for "Fabrikafa.Result" class.
+- CorporateId global claim type is obsolote. New type added: CorporationId
