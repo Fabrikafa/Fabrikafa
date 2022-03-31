@@ -22,3 +22,4 @@
 - RequestId added for "Fabrikafa.Result" class.
 - CorporateId global claim type is obsolote. New type added: CorporationId
 - OperationTypeEnum moved to "Fabrikafa.Sistem.Enums"
+- CorporationTypeEnum added to "Fabrikafa.Sistem.Enums"
