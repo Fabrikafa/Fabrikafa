@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Fabrikafa;
+namespace Fabrikafa.Sistem.Enums;
 
 /// <summary>
 /// Used to determine operation for a page
