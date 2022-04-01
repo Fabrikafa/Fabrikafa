@@ -25,4 +25,4 @@
 - CorporationTypeEnum added to "Fabrikafa.Sistem.Enums"
 
 2.0.4.0
-- 
+- Added Hash and Salt classes and related create functions.
