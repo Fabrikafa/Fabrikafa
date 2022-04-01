@@ -23,3 +23,6 @@
 - CorporateId global claim type is obsolote. New type added: CorporationId
 - OperationTypeEnum moved to "Fabrikafa.Sistem.Enums"
 - CorporationTypeEnum added to "Fabrikafa.Sistem.Enums"
+
+2.0.4.0
+- 
