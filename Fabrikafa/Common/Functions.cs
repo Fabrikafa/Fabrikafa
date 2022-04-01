@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Xml;
 using System.IO;
-
+using System.Net.Mail;
 
 namespace Fabrikafa.Common;
 
@@ -307,5 +307,23 @@ public class Functions
         ClipFromStart = 10,
         ClipFromEnd = 20,
         ClipFromMiddle = 30
+    }
+
+    /// <summary>
+    /// Returns the host name part of given email
+    /// </summary>
+    /// <param name="Email">Email to extraxt host name</param>
+    /// <returns></returns>
+    public static string GetHostNameFromEmail(string Email)
+    {
+        MailAddress address = new MailAddress(Email);
+        string hostName = address.Host;
+
+        if (!string.IsNullOrEmpty(hostName))
+        {
+            return hostName;
+        }
+
+        return string.Empty;
     }
 }
