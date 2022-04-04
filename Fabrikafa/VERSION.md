@@ -28,3 +28,6 @@
 - Added Hash and Salt classes and related create functions.
 - Added "GetHostNameFromEmail" function
 - Corrected class names for email sender services
+
+2.0.5.0
+- 
