@@ -13,8 +13,16 @@ namespace Fabrikafa.Services;
 
 // This class is used by the application to send email for account confirmation and password reset.
 // For more details see https://go.microsoft.com/fwlink/?LinkID=532713
-public class EmailSender : IEmailSender
+public class DevEmailSender : IEmailSender
 {
+    readonly IConfiguration _configuration;
+
+    public DevEmailSender(IConfiguration Configuration)
+    {
+        this._configuration = Configuration;
+
+    }
+
     public Task SendEmailAsync(string email, string subject, string message)
     {
         return Task.CompletedTask;
@@ -24,7 +32,7 @@ public class EmailSender : IEmailSender
 /// <summary>
 /// Custom e-mail sender for fabrikafa
 /// </summary>
-public class DevEmailSender : IEmailSender
+public class EmailSender : IEmailSender
 {
     readonly IConfiguration _configuration;
 
@@ -39,7 +47,7 @@ public class DevEmailSender : IEmailSender
     readonly string noreplyEmail;
     readonly string validationPattern;
 
-    public DevEmailSender(IConfiguration Configuration)
+    public EmailSender(IConfiguration Configuration)
     {
         this._configuration = Configuration;
 
