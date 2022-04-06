@@ -96,6 +96,7 @@ public class Application
         EMail = new EMail();
         ServiceKeys = new ServiceKeys();
         Quotas = new Quotas();
+        API = new API();
     }
 
     public string Id { get; set; }
@@ -117,6 +118,8 @@ public class Application
     public string RedirectorHost { get; set; }
 
     public Quotas Quotas { get; set; }
+
+    public API API { get; set; }
 }
 
 public class SMTP
@@ -167,6 +170,15 @@ public class Quotas
     public int CorporateQuota { get; set; }
 
     public int EnterpriseQuota { get; set; }
+}
+
+public class API
+{
+    public string Secret { get; set; }
+
+    public string Issuer { get; set; }
+
+    public string Audience { get; set; }
 }
 
 #endregion

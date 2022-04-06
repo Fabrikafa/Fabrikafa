@@ -30,4 +30,4 @@
 - Corrected class names for email sender services
 
 2.0.5.0
-- 
+- Added "API" class under Settings > Application for "FabrikafaSettings" class to reflect latest settings files used.
