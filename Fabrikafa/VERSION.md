@@ -35,3 +35,4 @@
 - Added nuget package "Microsoft.Extensions.Configuration.Binder" to bind "FabrikafaSettings" class instead of accessing configuration setting with their keys.
 - Added "Domain" and "UseDefaultCredentials" SMTP settings for "FabrikafaSettings" class
 - Refactored "EmailSender"
+- Added missing global page names

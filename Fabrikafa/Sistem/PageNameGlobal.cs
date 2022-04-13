@@ -9,12 +9,16 @@ public class PageNameGlobal
 
     public const string Dashboard = "/dashboard";
 
+    public const string AccountAccessDenied = "/account/accessdenied";
+    public const string AccountActivate = "/account/activate";
+    public const string AccountApi = "/account/api";
+    public const string AccountForgetPassword = "/account/forgetpassword";
     public const string AccountHome = "/account/index";
     public const string AccountLogin = "/account/login";
+    public const string AccountLogout = "/account/logout";
+    public const string AccountProfile = "/account/profile";
     public const string AccountRegister = "/account/register";
-    public const string AccountActivate = "/account/activate";
-    public const string AccountResendActivation = "/account/resendactivation";
-    public const string AccountForgetPassword = "/account/forgetpassword";
+    public const string AccountResendActivation = "/account/resendactivation";   
     public const string AccountResetPassword = "/account/resetpassword";
 
     public class Admin
