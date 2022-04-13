@@ -133,6 +133,10 @@ public class SMTP
     public string Password { get; set; }
 
     public string EnableSsl { get; set; }
+
+    public string UseDefaultCredentials { get; set; }
+
+    public string Domain { get; set; }
 }
 
 public class Google

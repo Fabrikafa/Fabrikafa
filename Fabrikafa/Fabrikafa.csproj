@@ -31,6 +31,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Cryptography.KeyDerivation" Version="6.0.3" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -45,7 +46,7 @@
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="xcopy $(ProjectDir)$(OutDir)$(TargetFileName) C:\_References\Fabrikafa\$(ProjectName) /y&#xD;&#xA;xcopy $(ProjectDir)*.md C:\_References\Fabrikafa\$(ProjectName) /y" />
+    <Exec Command="xcopy $(ProjectDir)$(OutDir)$(TargetFileName) D:\_References\Fabrikafa\$(ProjectName) /y&#xD;&#xA;xcopy $(ProjectDir)*.md D:\_References\Fabrikafa\$(ProjectName) /y" />
   </Target>
 
 </Project>
