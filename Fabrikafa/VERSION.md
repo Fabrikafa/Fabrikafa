@@ -36,3 +36,4 @@
 - Added "Domain" and "UseDefaultCredentials" SMTP settings for "FabrikafaSettings" class
 - Refactored "EmailSender"
 - Added missing global page names
+- Added "Pager" class for displaying paged grid tables
