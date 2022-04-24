@@ -59,4 +59,27 @@ public static class Extensions
     {
         return string.Join("", str.Split(default(string[]), StringSplitOptions.RemoveEmptyEntries));
     }
+
+    /// <summary>
+    /// Return 2 initials 
+    /// </summary>
+    /// <param name="str"></param>
+    /// <returns></returns>
+    public static string GetInitials(this string str)
+    {
+        var i = 1;
+        var initials = string.Empty;
+
+        var names = str.Split(' ');
+        foreach (var nameSplit in names)
+        {
+            if (i <= 2)
+            {
+                initials += nameSplit.Substring(0, 1).ToUpperInvariant();
+                i++;
+            }
+        }
+
+        return string.Join("", str.Split(default(string[]), StringSplitOptions.RemoveEmptyEntries));
+    }
 }
