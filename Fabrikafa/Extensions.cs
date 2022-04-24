@@ -61,7 +61,7 @@ public static class Extensions
     }
 
     /// <summary>
-    /// Return 2 initials 
+    /// Return first 2 initials 
     /// </summary>
     /// <param name="str"></param>
     /// <returns></returns>
@@ -80,6 +80,6 @@ public static class Extensions
             }
         }
 
-        return string.Join("", str.Split(default(string[]), StringSplitOptions.RemoveEmptyEntries));
+        return initials;
     }
 }
