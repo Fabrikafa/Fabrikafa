@@ -1,0 +1,25 @@
+﻿@page
+@using Fabrikafa
+@model ExtensionsModel
+@{
+    ViewData["Title"] = "Extensions";
+
+    var someSampleString1 = "Some Sample String To Text Extension Methods";
+    var someSampleString2 = "4124124";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h4>GetInitials Sample</h4>
+            <b>Sample Text:</b> @someSampleString1 <br />
+            -> <b> Remove All Whitespaces Of The Text: </b> @someSampleString1.RemoveAllWhitespaces()  <br />
+            -> <b> First 2 Initials Of The Text: </b> @someSampleString1.GetInitials()  <br />
+            <br />
+
+            <b>Sample Text:</b> @someSampleString2 <br />
+            -> <b> Kilo Format Of The Text: </b> @someSampleString2.ToKiloFormat()  <br />
+            <br />
+        </div>
+    </div>
+</div>
