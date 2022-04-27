@@ -38,3 +38,4 @@
 - Added missing global page names
 - Added "Pager" class for displaying paged grid tables
 - Added string extension method to return intials of a string
+- Simple extension method to sanitize input strings. Filters unwanted chars from untrusted inputs

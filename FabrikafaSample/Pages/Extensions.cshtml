@@ -6,6 +6,8 @@
 
     var someSampleString1 = "Some Sample String To Text Extension Methods";
     var someSampleString2 = "4124124";
+
+    var someUntrustedInputData = "<tag onclick=\"jsmethod();\">";
 }
 
 <div class="container">
@@ -19,6 +21,10 @@
 
             <b>Sample Text:</b> @someSampleString2 <br />
             -> <b> Kilo Format Of The Text: </b> @someSampleString2.ToKiloFormat()  <br />
+            <br />
+
+            <b>Sample Text:</b> @someUntrustedInputData <br />
+            -> <b> Filter unwanted chars from untrusted input: </b> @someUntrustedInputData.FilterInput()  <br />
             <br />
         </div>
     </div>

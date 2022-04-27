@@ -82,4 +82,23 @@ public static class Extensions
 
         return initials;
     }
+
+    /// <summary>
+    /// Simple method to sanitize input strings. Filters unwanted chars from untrusted input 
+    /// </summary>
+    /// <param name="str"></param>
+    /// <returns></returns>
+    public static string FilterInput(this string str)
+    {
+        var sanitizedString = str.Replace("\""," ");
+        sanitizedString = sanitizedString.Replace("<", " ");
+        sanitizedString = sanitizedString.Replace(">", " ");
+        sanitizedString = sanitizedString.Replace(";", " ");
+        sanitizedString = sanitizedString.Replace("'", "`");
+        sanitizedString = sanitizedString.Replace("=", " ");
+        sanitizedString = sanitizedString.Replace("(", " ");
+        sanitizedString = sanitizedString.Replace(")", " ");
+
+        return sanitizedString;
+    }
 }
