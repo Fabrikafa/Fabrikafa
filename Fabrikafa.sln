@@ -6,7 +6,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{F87E8EEA-E7B7-40FF-AEAA-41B384F1222E}"
 	ProjectSection(SolutionItems) = preProject
 		CONTRIBUTION.md = CONTRIBUTION.md
-		LICENSE.md = LICENSE.md
+		Fabrikafa\LICENSE.md = Fabrikafa\LICENSE.md
 		README.md = README.md
 		Fabrikafa\VERSION.md = Fabrikafa\VERSION.md
 	EndProjectSection
@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FabrikafaSample", "Fabrikaf
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{99CBA6F7-0A02-4B26-8AF9-F0C07EBE24E1}"
 	ProjectSection(SolutionItems) = preProject
-		README.md = README.md
+		CONTRIBUTION.md = CONTRIBUTION.md
 	EndProjectSection
 EndProject
 Global

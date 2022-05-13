@@ -25,6 +25,7 @@
     <None Include="..\README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 
@@ -35,18 +36,28 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Result.cs">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="fabrikafa-icon.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
+    <None Update="LICENSE.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="VERSION.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="xcopy $(ProjectDir)$(OutDir)$(TargetFileName) D:\_References\Fabrikafa\$(ProjectName) /y&#xD;&#xA;xcopy $(ProjectDir)*.md D:\_References\Fabrikafa\$(ProjectName) /y" />
+    <Exec Command="md c:\_References\Fabrikafa\$(ProjectName)\$(AssemblyVersion)&#xD;&#xA;xcopy $(ProjectDir)$(OutDir)$(TargetFileName) c:\_References\Fabrikafa\$(ProjectName)\$(AssemblyVersion) /y&#xD;&#xA;xcopy $(ProjectDir)*.md c:\_References\Fabrikafa\$(ProjectName)\$(AssemblyVersion) /y" />
   </Target>
 
 </Project>
