@@ -57,7 +57,7 @@
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="md c:\_References\Fabrikafa\$(ProjectName)\$(AssemblyVersion)&#xD;&#xA;xcopy $(ProjectDir)$(OutDir)$(TargetFileName) c:\_References\Fabrikafa\$(ProjectName)\$(AssemblyVersion) /y&#xD;&#xA;xcopy $(ProjectDir)*.md c:\_References\Fabrikafa\$(ProjectName)\$(AssemblyVersion) /y" />
+    <Exec Command="md c:\_References\Fabrikafa\$(ProjectName)\$(AssemblyVersion)&#xD;&#xA;xcopy $(ProjectDir)$(OutDir)$(TargetFileName) c:\_References\Fabrikafa\$(ProjectName)\$(AssemblyVersion) /y&#xD;&#xA;xcopy $(ProjectDir)$(OutDir)$(TargetFileName) c:\_References\Fabrikafa\$(ProjectName) /y&#xD;&#xA;xcopy $(ProjectDir)*.md c:\_References\Fabrikafa\$(ProjectName)\$(AssemblyVersion) /y" />
   </Target>
 
 </Project>
