@@ -2,7 +2,7 @@
 
 public class PageNameGlobal
 {
-    public const string _Home = "/";
+    public const string _Home = "/index";
 
     public const string Contact = "/contact";
     public const string Message = "/message";
@@ -23,7 +23,7 @@ public class PageNameGlobal
 
     public class Admin
     {
-        public const string _Home = "/admin";
+        public const string _Home = "/admin/index";
 
         public const string FreeEmailProvidersForm = "/admin/freeemailprovidersform";
         public const string FreeEmailProvidersExport = "/admin/freeemailprovidersexport";

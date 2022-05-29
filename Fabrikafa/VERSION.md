@@ -41,3 +41,4 @@
 - Simple extension method to sanitize input strings. Filters unwanted chars from untrusted inputs
 - Modified post built script tp point output folder to C drive again. Also added folder for keeping versions
 - Modified "solution items" and "documents" folder for solution
+- Explicit Index page names for "PageNameGlobal"
