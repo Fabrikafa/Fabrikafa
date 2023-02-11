@@ -262,3 +262,5 @@ __pycache__/
 *.pyc
 *.pubxml
 /Cutlu.Web/.config/dotnet-tools.json
+.vscode/launch.json
+.vscode/tasks.json
