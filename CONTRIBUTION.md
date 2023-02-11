@@ -9,7 +9,7 @@ Contributions are welcome, whether new core features, bug fixes or examples. Ple
 * New features should have an example.
 * Any copied assets (e.g. images, code etc.) should have the appropriate license and credit allowing for their use in this repository.
 * When refactoring existing code, make sure all relevant examples still work or are updated to work.
-* If a patch is relevant to a [GitHub issue](https://github.com/okutbay/MongoHead/issues?state=open), please reference the issue number with a hash in the commit message.
+* If a patch is relevant to a [GitHub issue](https://github.com/okutbay/fabrikafa/issues?state=open), please reference the issue number with a hash in the commit message.
 * All code should follow the style guide below
 
 ## Code Style ##
