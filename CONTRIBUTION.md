@@ -1,4 +1,4 @@
-# Contributing to MongoHead #
+# Contributing to Fabrikafa #
 
 Contributions are welcome, whether new core features, bug fixes or examples. Please follow these guidelines.
 
