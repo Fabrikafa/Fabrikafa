@@ -42,3 +42,4 @@
 - Modified post built script tp point output folder to C drive again. Also added folder for keeping versions
 - Modified "solution items" and "documents" folder for solution
 - Explicit Index page names for "PageNameGlobal"
+- FilterInput extension method fix for not creating redundant white spaces.

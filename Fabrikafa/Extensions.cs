@@ -91,14 +91,14 @@ public static class Extensions
     public static string FilterInput(this string str)
     {
         var sanitizedString = str.Replace("\""," ");
-        sanitizedString = sanitizedString.Replace("<", " ");
-        sanitizedString = sanitizedString.Replace(">", " ");
-        sanitizedString = sanitizedString.Replace(";", " ");
+        sanitizedString = sanitizedString.Replace("<", "");
+        sanitizedString = sanitizedString.Replace(">", "");
+        sanitizedString = sanitizedString.Replace(";", "");
         sanitizedString = sanitizedString.Replace("'", "`");
-        sanitizedString = sanitizedString.Replace("=", " ");
-        sanitizedString = sanitizedString.Replace("(", " ");
-        sanitizedString = sanitizedString.Replace(")", " ");
+        sanitizedString = sanitizedString.Replace("=", "");
+        sanitizedString = sanitizedString.Replace("(", "");
+        sanitizedString = sanitizedString.Replace(")", "");
 
-        return sanitizedString;
+        return sanitizedString.Trim();
     }
 }
