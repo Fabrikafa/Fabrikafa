@@ -2,7 +2,7 @@
 
 namespace Fabrikafa.Globals;
 
-public class CustomClaimTypesGlobal
+public class CustomClaimTypeGlobal
 {
     public const string UserId = "UserId";
     
