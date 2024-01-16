@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Fabrikafa.Sistem.Enums;
+﻿namespace Fabrikafa.Globals.Enums;
 
 /// <summary>
 /// Used to determine operation for a page

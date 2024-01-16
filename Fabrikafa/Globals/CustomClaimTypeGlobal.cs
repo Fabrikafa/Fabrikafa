@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Fabrikafa.Sistem;
+namespace Fabrikafa.Globals;
 
 public class CustomClaimTypesGlobal
 {

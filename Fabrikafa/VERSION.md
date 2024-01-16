@@ -43,3 +43,7 @@
 - Modified "solution items" and "documents" folder for solution
 - Explicit Index page names for "PageNameGlobal"
 - FilterInput extension method fix for not creating redundant white spaces.
+- "Sistem" folder renamed to "Globals" and namespaces changed accordingly. Fabrikafa.Sistem -> Fabrikafa.Globals.
+- "ViewDataGlobal" class renamed to "ViewDataKeyGlobal"
+- Name other global classes accordingly ot match others. "CustomClaimTypesGlobal" -> "CustomClaimTypeGlobal"
+- Add "ConstantGlobal" class

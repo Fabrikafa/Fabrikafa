@@ -1,6 +1,6 @@
-﻿namespace Fabrikafa.Sistem;
+﻿namespace Fabrikafa.Globals;
 
-public class ViewDataGlobal
+public class ViewDataKeyGlobal
 {
     public const string Title = "Title";
     public const string Message = "Message";

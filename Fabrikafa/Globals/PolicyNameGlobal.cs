@@ -1,4 +1,4 @@
-﻿namespace Fabrikafa.Sistem;
+﻿namespace Fabrikafa.Globals;
 
 public class PolicyNameGlobal
 {
