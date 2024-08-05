@@ -227,16 +227,21 @@ public class Functions
         return res;
     }
 
+    [Obsolete("This method is obsolete. Please use IsValidEmail(string emailToValidate)")]
     public static bool IsValidEmail(string Email, string RegExPattern)
     {
-        if (string.IsNullOrEmpty(RegExPattern))
-        {
-            throw new Exception("No email validation pattern assigned. Please set Email ValidationPattern application setting property.");
-        }
+        return IsValidEmail(Email);
+    }
 
-        bool retVal = false;
-        retVal = System.Text.RegularExpressions.Regex.IsMatch(Email, RegExPattern);
-        return retVal;
+    public static bool IsValidEmail(string emailToValidate)
+    {
+        try
+        {
+            var _email = new System.Net.Mail.MailAddress(emailToValidate);
+            return _email.Address == emailToValidate;
+        }
+        catch { }
+        return false;
     }
 
     [Obsolete("Please use ToKiloFormat extension method for strings, ints and dobules")]

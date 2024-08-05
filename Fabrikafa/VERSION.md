@@ -47,3 +47,4 @@
 - "ViewDataGlobal" class renamed to "ViewDataKeyGlobal"
 - Name other global classes accordingly ot match others. "CustomClaimTypesGlobal" -> "CustomClaimTypeGlobal"
 - Add "ConstantGlobal" class
+- Add new IsValidEmail method to validate without RegEx and make obsolete the current IsValidEmail method.
