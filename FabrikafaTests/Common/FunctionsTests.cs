@@ -5,7 +5,7 @@ namespace FabrikafaTests.Common;
 public class FunctionsTests
 {
     [Fact]
-    public void IsValidEmailTestWithValidEmail()
+    public void IsValidEmailTest()
     {
         Assert.True(Functions.IsValidEmail("test@fabrikafa.com"), "test@fabrikafa.com is valid email.");
         Assert.True(Functions.IsValidEmail("test@fabrikafa.com.tr"), "test@fabrikafa.com.tr is valid email.");
