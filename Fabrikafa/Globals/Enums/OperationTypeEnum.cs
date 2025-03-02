@@ -1,8 +1,11 @@
-﻿namespace Fabrikafa.Globals.Enums;
+﻿using System;
+
+namespace Fabrikafa.Globals.Enums;
 
 /// <summary>
 /// Used to determine operation for a page
 /// </summary>
+[Obsolete("Fabrikafa.Globals.Enums -> Fabrikafa.Platform.Enums")]
 public enum OperationTypeEnum
 {
     Add = 0,

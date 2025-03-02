@@ -1,5 +1,8 @@
-﻿namespace Fabrikafa.Globals;
+﻿using System;
 
+namespace Fabrikafa.Globals;
+
+[Obsolete("Fabrikafa.Globals -> Fabrikafa.Platform")]
 public class PageNameGlobal
 {
     public const string _Home = "/index";
@@ -21,6 +24,7 @@ public class PageNameGlobal
     public const string AccountResendActivation = "/account/resendactivation";   
     public const string AccountResetPassword = "/account/resetpassword";
 
+    [Obsolete("Fabrikafa.Globals -> Fabrikafa.Platform")]
     public class Admin
     {
         public const string _Home = "/admin/index";

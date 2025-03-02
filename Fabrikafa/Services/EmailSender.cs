@@ -1,14 +1,12 @@
-﻿using Microsoft.Extensions.Configuration;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
-
-using Fabrikafa;
-using System.Diagnostics;
 using Fabrikafa.Common;
+using Microsoft.Extensions.Configuration;
 
 namespace Fabrikafa.Services;
 
