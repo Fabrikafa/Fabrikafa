@@ -50,3 +50,5 @@
 - Add new IsValidEmail method to validate without RegEx and make obsolete the current IsValidEmail method.
 - Update to .NET 9.0
 - Make obsolete app specific constants and enums which will be removed later.
+- Introduce Read/Write Cookie functions.
+- Remove Attributes class.
