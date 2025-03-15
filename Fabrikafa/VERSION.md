@@ -53,3 +53,4 @@
 - Introduce Read/Write Cookie functions.
 - Remove Attributes class.
 - Remove Globals and Enums.
+- Make Settings classes obsolete.
