@@ -52,3 +52,4 @@
 - Make obsolete app specific constants and enums which will be removed later.
 - Introduce Read/Write Cookie functions.
 - Remove Attributes class.
+- Remove Globals and Enums.
