@@ -4,9 +4,9 @@ using System.Text.Json.Serialization;
 namespace Fabrikafa.Common;
 
 [Obsolete("Use Fabrikafa.Platform.Settings.FabrikafaSettings")]
-public class FabrikafaSettings
+public class FabrikafaSettings_
 {
-    public FabrikafaSettings()
+    public FabrikafaSettings_()
     {
         Logging = new Logging();
         AllowedHosts = String.Empty;

@@ -67,13 +67,13 @@ public class EmailSender : IEmailSender
     readonly string noreplyEmail;
     readonly string validationPattern;
 
-    private readonly FabrikafaSettings fabrikafaSettings;
+    private readonly FabrikafaSettings_ fabrikafaSettings;
 
     public EmailSender(IConfiguration Configuration)
     {
         this._configuration = Configuration;
 
-        fabrikafaSettings = _configuration.Get<FabrikafaSettings>();
+        fabrikafaSettings = _configuration.Get<FabrikafaSettings_>();
 
         smtpHost = fabrikafaSettings.Settings.SMTP.Host;
         int.TryParse(fabrikafaSettings.Settings.SMTP.Port, out smtpPort);
