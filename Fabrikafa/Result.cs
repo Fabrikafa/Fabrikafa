@@ -5,6 +5,12 @@ namespace Fabrikafa;
 [Serializable]
 public class Result
 {
+    internal static class MessageText
+    {
+        internal const string GeneralErrorText = "General error occured";
+        internal const string GoToHomeText = "Go to Home";
+    }
+
     /// <summary>
     /// Bolean result of the operation.
     /// </summary>
@@ -80,13 +86,13 @@ public class Result
         this.Code = ResultCodeEnum.GeneralError;
         this.MessageType = MessageTypeEnum.error;
         this.Title = MessageType.ToString();
-        messageText = "General error occured";
+        messageText = $"{MessageText.GeneralErrorText}.";
         codeText = ((int)this.Code).ToString();
         this.FriendlyDescription = template;
         CallToActionUrl = string.Empty;
         CallToActionUrlText = string.Empty;
         CallBackUrl = "/";
-        CallBackUrlText = "Go to Home";
+        CallBackUrlText = $"{MessageText.GoToHomeText}";
     }
 
     /// <summary>
@@ -104,7 +110,7 @@ public class Result
 
         if (!Enum.IsDefined(typeof(ResultCodeEnum), enumValue) && !enumValue.ToString().Contains(","))
         {
-            messageText = $"General error occured: {Message}";
+            messageText = $"{MessageText.GeneralErrorText}: {Message}";
         }
         else
         {

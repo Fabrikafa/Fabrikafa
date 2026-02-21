@@ -55,3 +55,5 @@
 - Remove Globals and Enums.
 - Make Settings classes obsolete.
 - Rename Settings class to FabrikafaSettings_ to prevent ambiguity with FabrikafaSettings class.
+- Improvements to Result class.
+

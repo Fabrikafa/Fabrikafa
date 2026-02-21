@@ -1,114 +1,85 @@
-﻿using Fabrikafa;
+﻿using System;
+using System.Globalization;
+using Fabrikafa;
+using Xunit;
 
 namespace FabrikafaTests;
 
 public class ExtensionsTests
 {
-    [Fact]
-    public void ToKiloFormatTest()
+
+
+    [Theory]
+    [InlineData("1", "1")]
+    [InlineData("10", "10")]
+    [InlineData("100", "100")]
+    [InlineData("1000", "1000")]
+    [InlineData("10000", "10k")]
+    [InlineData("100000", "100k")]
+    [InlineData("1000000", "1m")]
+    [InlineData("10000000", "10m")]
+    [InlineData("100000000", "100m")]
+    [InlineData("1000000000", "1b")]
+    [InlineData("10000000000", "10b")]
+    [InlineData("100000000000", "100b")]
+    [InlineData("1000000000000", "1t")]
+    [InlineData("10000000000000", "10t")]
+    [InlineData("100000000000000", "100t")]
+    [InlineData("4124124", "4.12m")]
+    public void ToKiloFormat_StringInputs_ReturnsExpected(string input, string expected)
     {
-        var stringInput = "1";
-        var result = stringInput.ToKiloFormat();
-        Assert.Equal("1", result);
-
-        stringInput = "10";
-        result = stringInput.ToKiloFormat();
-        Assert.Equal("10", result);
-
-        stringInput = "100";
-        result = stringInput.ToKiloFormat();
-        Assert.Equal("100", result);
-
-        stringInput = "1000";
-        result = stringInput.ToKiloFormat();
-        Assert.Equal("1000", result);
-
-        stringInput = "10000";
-        result = stringInput.ToKiloFormat();
-        Assert.Equal("10k", result);
-
-        stringInput = "100000";
-        result = stringInput.ToKiloFormat();
-        Assert.Equal("100k", result);
-
-        stringInput = "1000000";
-        result = stringInput.ToKiloFormat();
-        Assert.Equal("1m", result);
-
-        stringInput = "10000000";
-        result = stringInput.ToKiloFormat();
-        Assert.Equal("10m", result);
-
-        stringInput = "100000000";
-        result = stringInput.ToKiloFormat();
-        Assert.Equal("100m", result);
-
-        stringInput = "1000000000";
-        result = stringInput.ToKiloFormat();
-        Assert.Equal("1b", result);
-
-        stringInput = "10000000000";
-        result = stringInput.ToKiloFormat();
-        Assert.Equal("10b", result);
-
-        stringInput = "100000000000";
-        result = stringInput.ToKiloFormat();
-        Assert.Equal("100b", result);
-
-        stringInput = "1000000000000";
-        result = stringInput.ToKiloFormat();
-        Assert.Equal("1t", result);
-
-        stringInput = "10000000000000";
-        result = stringInput.ToKiloFormat();
-        Assert.Equal("10t", result);
-
-        stringInput = "100000000000000";
-        result = stringInput.ToKiloFormat();
-        Assert.Equal("100t", result);
-
-        stringInput = "4124124";
-        result = stringInput.ToKiloFormat();
-        Assert.Equal("4.12m", result);
+        var result = Helper.RunInvariantCulture(() => input.ToKiloFormat());
+        Assert.Equal(expected, result);
     }
 
-    [Fact]
-    public void RemoveAllWhitespacesTest()
+    [Theory]
+    [InlineData(1, "1")]
+    [InlineData(10000, "10k")]
+    [InlineData(4124124, "4.12m")]
+    public void ToKiloFormat_IntOverload_ReturnsExpected(int input, string expected)
     {
-        var stringInput = "     Some Sample     String To Text     Extension Methods     ";
-        var result = stringInput.RemoveAllWhitespaces();
-
-        Assert.Equal("SomeSampleStringToTextExtensionMethods", result);
+        var result = Helper.RunInvariantCulture(() => input.ToKiloFormat());
+        Assert.Equal(expected, result);
     }
 
-    [Fact]
-    public void GetInitialsTest()
+    [Theory]
+    [InlineData(1.0, "1")]
+    [InlineData(10000.0, "10k")]
+    [InlineData(4124124.0, "4.12m")]
+    public void ToKiloFormat_DoubleOverload_ReturnsExpected(double input, string expected)
     {
-        string stringSingleInitial = "Ozan";
-        string stringDoubleInitial = "Ozan Bayram";
-        string stringTripleInitial = "Ozan Kutlu Bayram";
-        string stringMoreThan3Initial = "Ozan Kutlu Bayram ve Mahdumlari";
-
-        var resultSingleInitial = stringSingleInitial.GetInitials();
-        var resultDoubleInitial = stringDoubleInitial.GetInitials();
-        var resultTripleInitial = stringTripleInitial.GetInitials();
-        var resultMoreThan3Initial = stringMoreThan3Initial.GetInitials();
-
-        Assert.Equal("O", resultSingleInitial);
-        Assert.Equal("OB", resultDoubleInitial);
-        Assert.Equal("OK", resultTripleInitial);
-        Assert.Equal("OK", resultMoreThan3Initial);
+        var result = Helper.RunInvariantCulture(() => input.ToKiloFormat());
+        Assert.Equal(expected, result);
     }
 
-    [Fact]
-    public void FilterInputTest()
+    [Theory]
+    [InlineData("     Some Sample     String To Text     Extension Methods     ", "SomeSampleStringToTextExtensionMethods")]
+    [InlineData("\tLeading\tand\nNewLine  Spaces ", "LeadingandNewLineSpaces")]
+    public void RemoveAllWhitespaces_RemovesAllKindsOfWhitespace(string input, string expected)
     {
-        var stringInput = "<tag onclick=\"jsmethod();\">";
-        var result = stringInput.FilterInput();
-        Assert.Equal("tag onclick jsmethod", result);
+        var result = input.RemoveAllWhitespaces();
+        Assert.Equal(expected, result);
+    }
 
-        stringInput = "<tag onclick='jsmethod();'>";
-        result = stringInput.FilterInput();
-        Assert.Equal("tag onclick`jsmethod`", result);
-    }  
+    [Theory]
+    [InlineData("Ozan", "O")]
+    [InlineData("Ozan Bayram", "OB")]
+    [InlineData("Ozan Kutlu Bayram", "OK")]
+    [InlineData("Ozan Kutlu Bayram ve Mahdumlari", "OK")]
+    [InlineData("ozan kutlu", "OK")] // verifies casing normalization to upper invariant
+    public void GetInitials_VariousNameFormats_ReturnsExpected(string input, string expected)
+    {
+        var result = input.GetInitials();
+        Assert.Equal(expected, result);
+    }
+
+    [Theory]
+    [InlineData("<tag onclick=\"jsmethod();\">", "tag onclick jsmethod")]
+    [InlineData("<tag onclick='jsmethod();'>", "tag onclick`jsmethod`")]
+    [InlineData("a=b(c);d", "abcd")] // '=' '(' ')' and ';' removed; note result concatenation
+    public void FilterInput_SanitizesStringsAsExpected(string input, string expected)
+    {
+        var result = input.FilterInput();
+        Assert.Equal(expected, result);
+    }
 }
