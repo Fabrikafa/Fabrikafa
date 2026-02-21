@@ -1,33 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
+﻿using System.Collections.Generic;
 using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
-using Fabrikafa.Common;
+using Fabrikafa.Services.Interfaces;
 using Microsoft.Extensions.Configuration;
 
 namespace Fabrikafa.Services;
 
 /// <summary>
-/// Custom e-mail sender for fabrikafa when there is no SMTP settings
+/// Custom e-mail sender for fabrikafa when there is no SMTP_ settings
 /// </summary>
 public class DevEmailSender : IEmailSender
 {
     readonly IConfiguration _configuration;
 
-    public DevEmailSender(IConfiguration Configuration)
+    public DevEmailSender(IConfiguration configuration)
     {
-        this._configuration = Configuration;
+        _configuration = configuration;
     }
 
     /// <summary>
     /// Sends an email to Emails with given subject and HTML content
     /// </summary>
-    /// <param name="Emails">TO Emails string seperated with valid split chars</param>
-    /// <param name="Subject">Subject of the email</param>
-    /// <param name="HtmlMessage">Body of email as HTML</param>
+    /// <param name="email">TO Emails string seperated with valid split chars</param>
+    /// <param name="subject">Subject of the email</param>
+    /// <param name="message">Body of email as HTML</param>
     /// <returns>Task</returns>
     public Task SendEmailAsync(string email, string subject, string message)
     {
@@ -37,13 +34,13 @@ public class DevEmailSender : IEmailSender
     /// <summary>
     /// Sends an email to Emails TO, CC and BCC with given subject and HTML content
     /// </summary>
-    /// <param name="EmailsTo">To Emails string seperated with valid split chars</param>
-    /// <param name="EmailsCc">Cc Emails string seperated with valid split chars</param>
-    /// <param name="EmailsBcc">Bcc Emails string seperated with valid split chars</param>
-    /// <param name="Subject">Subject of the email</param>
-    /// <param name="HtmlMessage">Body of email as HTML</param>
+    /// <param name="emailsTo">To Emails string seperated with valid split chars</param>
+    /// <param name="emailsCc">Cc Emails string seperated with valid split chars</param>
+    /// <param name="emailsBcc">Bcc Emails string seperated with valid split chars</param>
+    /// <param name="subject">Subject of the email</param>
+    /// <param name="htmlMessage">Body of email as HTML</param>
     /// <returns>Task</returns>
-    public Task SendEmailAsync(string EmailsTo, string EmailsCc, string EmailsBcc, string Subject, string HtmlMessage)
+    public Task SendEmailAsync(string emailsTo, string emailsCc, string emailsBcc, string subject, string htmlMessage)
     {
         return Task.CompletedTask;
     }
@@ -54,103 +51,72 @@ public class DevEmailSender : IEmailSender
 /// </summary>
 public class EmailSender : IEmailSender
 {
-    readonly IConfiguration _configuration;
+    private readonly IConfiguration _configuration;
+    private readonly string _smtpHost;
+    private readonly int _smtpPort;
+    private readonly bool _enableSsl;
+    private readonly bool _useDefaultCredentials;
+    private readonly string _smtpUsername;
+    private readonly string _smtpPassword;
+    private readonly string _noreplyEmail;
+    private readonly string _validationPattern;
 
-    readonly string smtpHost;
-    readonly int smtpPort;
-    readonly bool enableSsl;
-    readonly bool useDefaultCredentials;
-    readonly string smtpUsername;
-    readonly string smtpPassword;
-    readonly string smtpDomain;
-
-    readonly string noreplyEmail;
-    readonly string validationPattern;
-
-    private readonly FabrikafaSettings_ fabrikafaSettings;
-
-    public EmailSender(IConfiguration Configuration)
+    public EmailSender(IConfiguration configuration)
     {
-        this._configuration = Configuration;
+        _configuration = configuration;
 
-        fabrikafaSettings = _configuration.Get<FabrikafaSettings_>();
+        _smtpHost = _configuration["CustomSettings:SMTP:Host"];
+        int.TryParse(_configuration["CustomSettings:SMTP:Port"], out _smtpPort);
+        bool.TryParse(_configuration["CustomSettings:SMTP:EnableSsl"], out _enableSsl);
+        bool.TryParse(_configuration["CustomSettings:SMTP:UseDefaultCredentials"], out _useDefaultCredentials);
+        _smtpUsername = _configuration["CustomSettings:SMTP:Username"];
+        _smtpPassword = _configuration["CustSettings:SMTP:Password"];
 
-        smtpHost = fabrikafaSettings.Settings.SMTP.Host;
-        int.TryParse(fabrikafaSettings.Settings.SMTP.Port, out smtpPort);
-        bool.TryParse(fabrikafaSettings.Settings.SMTP.EnableSsl, out enableSsl);
-        bool.TryParse(fabrikafaSettings.Settings.SMTP.UseDefaultCredentials, out useDefaultCredentials);
-        smtpUsername = fabrikafaSettings.Settings.SMTP.Username;
-        smtpPassword = fabrikafaSettings.Settings.SMTP.Password;
-        smtpDomain = fabrikafaSettings.Settings.SMTP.Domain;
-
-        noreplyEmail = fabrikafaSettings.Settings.Application.EMail.NoReplyAddress;
-        validationPattern = fabrikafaSettings.Settings.Application.EMail.ValidationPattern;
+        _noreplyEmail = _configuration["CustomSettings:App:EMail:NoReplyAddress"];
+        _validationPattern = _configuration["CustomSettings:App:EMail:ValidationPattern"];
     }
 
     /// <summary>
     /// Sends an email to Emails with given subject and HTML content
     /// </summary>
-    /// <param name="Emails">TO Emails string seperated with valid split chars</param>
-    /// <param name="Subject">Subject of the email</param>
-    /// <param name="HtmlMessage">Body of email as HTML</param>
+    /// <param name="emails">TO Emails string seperated with valid split chars</param>
+    /// <param name="subject">Subject of the email</param>
+    /// <param name="htmlMessage">Body of email as HTML</param>
     /// <returns>Task</returns>
-    public async Task SendEmailAsync(string Emails, string Subject, string HtmlMessage)
+    public async Task SendEmailAsync(string emails, string subject, string htmlMessage)
     {
-        var client = new SmtpClient(smtpHost, smtpPort)
-        {
-            EnableSsl = enableSsl,
-            UseDefaultCredentials = useDefaultCredentials,
-            Credentials = new NetworkCredential(smtpUsername, smtpPassword)
-        };
-
-        var mailMessage = new MailMessage
-        {
-            From = new MailAddress(noreplyEmail)
-        };
-
-        addressAddHelper(Emails, mailMessage, emailType.To);
-
-        mailMessage.Subject = Subject;
-        mailMessage.Body = HtmlMessage;
-        mailMessage.IsBodyHtml = true;
-
-        //// Set the method that is called back when the send operation ends.
-        //client.SendCompleted += new
-        //SendCompletedEventHandler(SendCompletedCallback);
-
-        await client.SendMailAsync(mailMessage);
+        await SendEmailAsync(emails, null, null, subject, htmlMessage);
     }
 
     /// <summary>
     /// Sends an email to Emails TO, CC and BCC with given subject and HTML content
     /// </summary>
-    /// <param name="EmailsTo">To Emails string seperated with valid split chars</param>
-    /// <param name="EmailsCc">Cc Emails string seperated with valid split chars</param>
-    /// <param name="EmailsBcc">Bcc Emails string seperated with valid split chars</param>
-    /// <param name="Subject">Subject of the email</param>
-    /// <param name="HtmlMessage">Body of email as HTML</param>
+    /// <param name="emailsTo">To Emails string seperated with valid split chars</param>
+    /// <param name="emailsCc">Cc Emails string seperated with valid split chars</param>
+    /// <param name="emailsBcc">Bcc Emails string seperated with valid split chars</param>
+    /// <param name="subject">Subject of the email</param>
+    /// <param name="htmlMessage">Body of email as HTML</param>
     /// <returns>Task</returns>
-    public async Task SendEmailAsync(string EmailsTo, string EmailsCc, string EmailsBcc, string Subject, string HtmlMessage)
+    public async Task SendEmailAsync(string emailsTo, string emailsCc, string emailsBcc, string subject, string htmlMessage)
     {
-        var client = new SmtpClient(smtpHost, smtpPort)
+        using var client = new SmtpClient(_smtpHost, _smtpPort)
         {
-            EnableSsl = enableSsl,
-            UseDefaultCredentials = useDefaultCredentials,
-            Credentials = new NetworkCredential(smtpUsername, smtpPassword)
+            EnableSsl = _enableSsl,
+            UseDefaultCredentials = _useDefaultCredentials,
+            Credentials = new NetworkCredential(_smtpUsername, _smtpPassword)
         };
 
-        var mailMessage = new MailMessage
+        using var mailMessage = new MailMessage
         {
-            From = new MailAddress(noreplyEmail)
+            From = new MailAddress(_noreplyEmail),
+            Subject = subject,
+            Body = htmlMessage,
+            IsBodyHtml = true
         };
 
-        addressAddHelper(EmailsTo, mailMessage, emailType.To);
-        addressAddHelper(EmailsCc, mailMessage, emailType.Cc);
-        addressAddHelper(EmailsBcc, mailMessage, emailType.Bcc);
-
-        mailMessage.Subject = Subject;
-        mailMessage.Body = HtmlMessage;
-        mailMessage.IsBodyHtml = true;
+        AddAddressesToMessage(emailsTo, mailMessage, EmailType.To);
+        AddAddressesToMessage(emailsCc, mailMessage, EmailType.Cc);
+        AddAddressesToMessage(emailsBcc, mailMessage, EmailType.Bcc);
 
         await client.SendMailAsync(mailMessage);
     }
@@ -158,32 +124,35 @@ public class EmailSender : IEmailSender
     /// <summary>
     /// Add emails to relevant collection of MailMessage 
     /// </summary>
-    /// <param name="Emails">Emails string seperated with valid split chars</param>
-    /// <param name="MailMessage">MailMessage instance to add emails</param>
-    /// <param name="EmailType">Type to determine which MailMessage email collection will be used</param>
-    private void addressAddHelper(string Emails, MailMessage MailMessage, emailType EmailType)
+    /// <param name="emails">Emails string seperated with valid split chars</param>
+    /// <param name="mailMessage">MailMessage instance to add emails</param>
+    /// <param name="emailType">Type to determine which MailMessage email collection will be used</param>
+    private void AddAddressesToMessage(string emails, MailMessage mailMessage, EmailType emailType)
     {
-        List<string> addresses = Common.Functions.SplitEMailAddresses(Emails);
+        if (string.IsNullOrWhiteSpace(emails))
+            return;
+
+        List<string> addresses = Common.Functions.SplitEMailAddresses(emails);
 
         foreach (string item in addresses)
         {
             string emailAddress = item.RemoveAllWhitespaces();
 
-            if (Common.Functions.IsValidEmail(emailAddress, validationPattern)) //add if the email address is valid against the validation pattern
+            if (Common.Functions.IsValidEmail(emailAddress, _validationPattern))
             {
-                switch (EmailType)
+                switch (emailType)
                 {
-                    case emailType.To:
-                        MailMessage.To.Add(new MailAddress(emailAddress));
+                    case EmailType.To:
+                        mailMessage.To.Add(new MailAddress(emailAddress));
                         break;
-                    case emailType.Cc:
-                        MailMessage.CC.Add(new MailAddress(emailAddress));
+                    case EmailType.Cc:
+                        mailMessage.CC.Add(new MailAddress(emailAddress));
                         break;
-                    case emailType.Bcc:
-                        MailMessage.Bcc.Add(new MailAddress(emailAddress));
+                    case EmailType.Bcc:
+                        mailMessage.Bcc.Add(new MailAddress(emailAddress));
                         break;
                     default:
-                        MailMessage.To.Add(new MailAddress(emailAddress));
+                        mailMessage.To.Add(new MailAddress(emailAddress));
                         break;
                 }
             }
@@ -193,33 +162,10 @@ public class EmailSender : IEmailSender
     /// <summary>
     /// This email type is used to determine type of email collection when adding to relevant collection of MailMessage 
     /// </summary>
-    private enum emailType
+    private enum EmailType
     { 
-        To = 0,
-        Cc = 1,
-        Bcc = 2
-    }
-
-    static bool mailSent = false;
-    private static void SendCompletedCallback(object sender, AsyncCompletedEventArgs e)
-    {
-        // Get the unique identifier for this asynchronous operation.
-        String token = (string)e.UserState;
-
-        if (e.Cancelled)
-        {
-            Console.WriteLine("[{0}] Send canceled.", token);
-        }
-        if (e.Error != null)
-        {
-            Console.WriteLine("[{0}] {1}", token, e.Error.ToString());
-        }
-        else
-        {
-            Console.WriteLine("Message sent.");
-            mailSent = true;
-        }
-
-        Debug.Assert(mailSent);
+        To,
+        Cc,
+        Bcc
     }
 }

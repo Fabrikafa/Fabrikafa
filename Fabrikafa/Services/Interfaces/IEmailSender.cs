@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Fabrikafa.Services;
+namespace Fabrikafa.Services.Interfaces;
 
 public interface IEmailSender
 {
