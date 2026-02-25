@@ -65,6 +65,11 @@ public static class Extensions
     /// <returns></returns>
     public static string GetInitials(this string str)
     {
+        if (string.IsNullOrWhiteSpace(str))
+        {
+            return string.Empty;
+        }
+
         var i = 1;
         var initials = string.Empty;
 

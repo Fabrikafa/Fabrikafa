@@ -62,6 +62,7 @@ public class ExtensionsTests
     }
 
     [Theory]
+    [InlineData("", "")]
     [InlineData("Ozan", "O")]
     [InlineData("Ozan Bayram", "OB")]
     [InlineData("Ozan Kutlu Bayram", "OK")]
