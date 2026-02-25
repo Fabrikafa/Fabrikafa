@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <RepositoryUrl>https://github.com/okutbay/Fabrikafa</RepositoryUrl>
     <Description>Fabrikafa Library contains helper classes and methods for Fabrikafa projects. </Description>
     <PackageIcon>fabrikafa-icon.png</PackageIcon>

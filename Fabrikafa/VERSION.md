@@ -56,4 +56,5 @@
 - Make Settings classes obsolete.
 - Rename Settings class to FabrikafaSettings_ to prevent ambiguity with FabrikafaSettings class.
 - Improvements to Result class.
-
+- FIX: GetInitials. Add null check.
+- Upgrade to net10.0.
